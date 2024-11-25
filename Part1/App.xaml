@@ -4,6 +4,60 @@
              xmlns:local="clr-namespace:Part1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="numbersColor" Color="#FF3B3BF5"/>
+        <SolidColorBrush x:Key="operatorsColor" Color="#FF0C0FC3"/>
+        <SolidColorBrush x:Key="specialOperatorsColor" Color="#FF060C69"/>
+        <SolidColorBrush x:Key="labelColor" Color="#FFD3D3D3"/>
+        <LinearGradientBrush x:Key="windowColor" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF9AA9A9" Offset="0.048"/>
+            <GradientStop Color="#FF4E4E4E" Offset="0.986"/>
+        </LinearGradientBrush>
+
+        <Style TargetType="Button" x:Key="numberButtonsStyle">
+            <Setter Property="Background" Value="{StaticResource numbersColor}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}" 
+                    CornerRadius="10">
+                            <ContentPresenter 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center" 
+                        Content="{TemplateBinding Content}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="operatprsButtonsStyle" BasedOn="{StaticResource numberButtonsStyle}">
+            <Setter Property="Background" Value="{StaticResource operatorsColor}"/>
+            
+        </Style>
+        
+        <Style TargetType="Button" x:Key="specialOperatprsButtonsStyle" BasedOn="{StaticResource numberButtonsStyle}">
+            <Setter Property="Background" Value="{StaticResource specialOperatorsColor}"/>
+            
+        </Style>
+
+        <Style TargetType="Label" x:Key="topLabelStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#FF191919"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="bottomLabelStyle">
+            <Setter Property="FontSize" Value="60"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+
     </Application.Resources>
 </Application>
