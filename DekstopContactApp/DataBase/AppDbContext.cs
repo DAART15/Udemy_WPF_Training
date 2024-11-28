@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DekstopContactApp.DataBase
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=DekstopContactsAppDataBase.db");
+            optionsBuilder.UseSqlServer("Data Source=RAMAS\\SQLEXPRESS;Initial Catalog=WPF_Contact_App;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
     }
 }
