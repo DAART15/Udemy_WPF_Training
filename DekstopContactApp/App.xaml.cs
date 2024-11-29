@@ -1,6 +1,8 @@
 ﻿using DekstopContactApp.DataBase;
 using DekstopContactApp.Interfaces;
+using DekstopContactApp.Modules;
 using DekstopContactApp.Repositories;
+using DekstopContactApp.Windows;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
@@ -17,13 +19,13 @@ namespace DekstopContactApp
             ConfigureServices(serviceCollection);
             _serviceProvider = serviceCollection.BuildServiceProvider();
         }
-
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<AppDbContext>();
             services.AddSingleton<IContactRepository, ContactRepository>();
             services.AddTransient<MainWindow>();
             services.AddTransient<NewContactWindow>();
+            services.AddTransient<UpdateContactWindow>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

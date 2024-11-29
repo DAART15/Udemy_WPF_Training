@@ -14,5 +14,10 @@ namespace DekstopContactApp.Modules
         public string Email { get; set; }
         [Required, MaxLength(15), Column("PhoneNumber")]
         public string Phone { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name} {Email} {Phone}";
+        }
     }
 }

@@ -10,8 +10,10 @@ namespace DekstopContactApp
 
         public NewContactWindow(IContactRepository contactRepository)
         {
-            _contactRepository = contactRepository ?? throw new ArgumentNullException(nameof(contactRepository));
+            _contactRepository = contactRepository;
             InitializeComponent();
+            Owner = Application.Current.MainWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -25,12 +27,11 @@ namespace DekstopContactApp
                     Phone = phoneTextBox.Text
                 };
                 await _contactRepository.AddContactAsync(contact);
-                MessageBox.Show("Contact added successfully.","Success", MessageBoxButton.OK);
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "ERROR", MessageBoxButton.OK);
+                MessageBox.Show($"An error occurred: {ex.Message}", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
