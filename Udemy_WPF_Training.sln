@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Part1", "Part1\Part1.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part2", "Part2", "{8C4B7AC8-CF83-49E2-B358-3C0338086C8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DekstopContactApp", "DekstopContactApp\DekstopContactApp.csproj", "{678D8923-97D6-4126-A5BA-ECC8DC8D564D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DekstopContactApp", "DekstopContactApp\DekstopContactApp.csproj", "{678D8923-97D6-4126-A5BA-ECC8DC8D564D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Part3", "Part3", "{6B1C9174-798E-40A7-837D-A53E40B0911D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageUpload", "ImageUpload\ImageUpload.csproj", "{D8C650E3-839F-475B-984B-1EA2922C3613}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +29,10 @@ Global
 		{678D8923-97D6-4126-A5BA-ECC8DC8D564D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{678D8923-97D6-4126-A5BA-ECC8DC8D564D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{678D8923-97D6-4126-A5BA-ECC8DC8D564D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8C650E3-839F-475B-984B-1EA2922C3613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8C650E3-839F-475B-984B-1EA2922C3613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8C650E3-839F-475B-984B-1EA2922C3613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8C650E3-839F-475B-984B-1EA2922C3613}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{536B21F6-9E3E-48A7-8960-27BF61D0BB50} = {ACE9F42F-A331-473F-BD63-07E7D7D4B0EF}
 		{678D8923-97D6-4126-A5BA-ECC8DC8D564D} = {8C4B7AC8-CF83-49E2-B358-3C0338086C8C}
+		{D8C650E3-839F-475B-984B-1EA2922C3613} = {6B1C9174-798E-40A7-837D-A53E40B0911D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07B88B2D-3EAF-4D1A-AE51-47B1176ACF80}
