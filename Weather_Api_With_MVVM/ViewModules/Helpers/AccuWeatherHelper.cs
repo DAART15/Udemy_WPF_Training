@@ -14,6 +14,7 @@ namespace Weather_Api_With_MVVM.ViewModules.Helpers
         public static async Task<List<City>> GetCities(string query)
         {
             string url = string.Format(BASE_URL + AUTOCOMPLETE_ENDPOINT, API_KEY, query);
+            //string url = BASE_URL + string.Format( AUTOCOMPLETE_ENDPOINT, API_KEY, query);
             using HttpClient httpClient = new();
             var response = await httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)
@@ -27,6 +28,7 @@ namespace Weather_Api_With_MVVM.ViewModules.Helpers
         public static async Task<CurrentConditions> GetCurrentConditions(string cityKey)
         {
             string url = string.Format(BASE_URL + CURRENT_CONDITIONS_ENDPOINT, cityKey, API_KEY);
+            //string url = BASE_URL + string.Format( CURRENT_CONDITIONS_ENDPOINT, cityKey, API_KEY);
             using HttpClient httpClient = new();
             var response = await httpClient.GetAsync(url);
             if (response.IsSuccessStatusCode)

@@ -4,49 +4,75 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Weather_Api_With_MVVM.Views"
+        xmlns:vm="clr-namespace:Weather_Api_With_MVVM.ViewModules"
+        xmlns:vc ="clr-namespace:Weather_Api_With_MVVM.ViewModules.ValueConverters"
+        d:DataContext="{d:DesignInstance Type=vm:WeatherVM, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         Title="Weather Window" Height="450" Width="800">
-    <Grid Background="AliceBlue">
+    <Window.Resources>
+        <vm:WeatherVM x:Key="weatherVM"/>
+        <vc:BoolToRainConverter x:Key="boolToRainConverter"/>
+    </Window.Resources>
+    
+    <Grid Background="AliceBlue" DataContext="{StaticResource weatherVM}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.22*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Margin="5">
             <TextBlock Text="Search for a city:"/>
-            <TextBox x:Name="txtCityName" Margin="0 0 0 5"/>
-            <Button x:Name="SeaqrchCity" Content="Search City" Width="80"/>
+            <TextBox Text="{Binding Query, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     Margin="0 0 0 5"/>
+            <Button  Content="Search City" Width="80" 
+                     Command="{Binding SearchCommand}"
+                     CommandParameter="{Binding Query}"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Margin="5">
-            <Button x:Name="GetWeather" Content="Get Weather Of Selected City" Margin="0 10"/>
-            <ListView >
+            <Button Content="Get Weather Of Selected City" Margin="0 10"
+                    Command="{Binding GetCurrentConditionCommand}"
+                    CommandParameter="{Binding SelectedCity}"/>
+            <ListView ItemsSource="{Binding Cities}"
+                      SelectedItem="{Binding SelectedCity}">
+                      
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="City" Width="82" DisplayMemberBinding="{Binding LocalizedName}"/>
-                        <GridViewColumn Header="State" Width="35" DisplayMemberBinding="{Binding AdministrativeArea.ID}"/>
-                        <GridViewColumn Header="Country" Width="50" DisplayMemberBinding="{Binding Country.ID}"/>
+                        <GridViewColumn Header="City" Width="Auto" DisplayMemberBinding="{Binding LocalizedName}"/>
+                        <GridViewColumn Header="State" Width="Auto" DisplayMemberBinding="{Binding AdministrativeArea.ID}"/>
+                        <GridViewColumn Header="Country" Width="Auto" DisplayMemberBinding="{Binding Country.ID}"/>
                     </GridView>
                 </ListView.View>
+                
+                <!--
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="text"/>
+                        <Grid>
+                            <TextBlock Text="{Binding LocalizedName}"/>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                -->
             </ListView>
         </StackPanel>
-        <Grid Grid.Row="0" Grid.Column="1" Margin="10 10 10 0" Background="#FF1785EF">
+        <Grid Grid.Row="0" DataContext="{Binding CurrentConditions}" Grid.Column="1" Margin="10 10 10 0" Background="#FF1785EF"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" Margin="10 0">
-                <TextBlock Text="Your City Name" Foreground="White" FontSize="20"/>
-                <TextBlock Text="Overcast" Foreground="White" FontSize="15"/>
+                <TextBlock DataContext="{StaticResource weatherVM}" 
+                           Text="{Binding SelectedCity.LocalizedName}" 
+                           Foreground="White" FontSize="20"/>
+                <TextBlock Text="{Binding WeatherText}" 
+                           Foreground="White" FontSize="15"/>
+                <TextBlock Text="{Binding HasPrecipitation, Converter={StaticResource boolToRainConverter}}" 
+                           Foreground="White" FontSize="12"/>
             </StackPanel>
-            <TextBlock Text="22C" Foreground="White" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontSize="30"/>
+            <TextBlock Text="{Binding Temperature.Metric.Value, StringFormat={}{0}°C}"
+                       Foreground="White" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" FontSize="30"/>
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="10 0 10 10" Background="DeepSkyBlue">
             <TextBlock Text="Weather Details (there is for future with images)"/>

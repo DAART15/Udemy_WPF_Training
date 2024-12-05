@@ -13,7 +13,6 @@
         public string MobileLink { get; set; }
         public string Link { get; set; }
     }
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<List<CurrentConditions>>(myJsonResponse);
 
     public class Temperature
     {
